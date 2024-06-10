@@ -146,7 +146,7 @@ def plot_half_circle_chart(data, colors, kategori_mapping):
     ax.set(aspect="equal", title="Seat distribution among political groups\nin the European Parliament")
     st.pyplot(fig)
 
-file_path = 'https://github.com/albertovth/eu_parliament_election_2024/blob/main/default_values_eu_parliamentary_election_2024.csv'
+file_path = 'https://raw.githubusercontent.com/albertovth/eu_parliament_election_2024/main/default_values_eu_parliamentary_election_2024.csv'
 df = pd.read_csv(file_path)
 
 districts = [col for col in df.columns if col not in ['Parti', 'Kategori','Slider group','Party code','Political group']]
