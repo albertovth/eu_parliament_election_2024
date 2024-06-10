@@ -147,7 +147,7 @@ def plot_half_circle_chart(data, colors, kategori_mapping):
     st.pyplot(fig)
 
 # Load the CSV file
-file_path = '/home/albertovth/EU/default_values_eu_parliamentary_election_2024.csv'
+file_path = 'https://github.com/albertovth/eu_parliament_election_2024/blob/main/default_values_eu_parliamentary_election_2024.csv'
 df = pd.read_csv(file_path)
 
 # Identify districts, excluding non-percentage columns
