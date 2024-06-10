@@ -146,32 +146,25 @@ def plot_half_circle_chart(data, colors, kategori_mapping):
     ax.set(aspect="equal", title="Seat distribution among political groups\nin the European Parliament")
     st.pyplot(fig)
 
-# Load the CSV file
 file_path = 'https://github.com/albertovth/eu_parliament_election_2024/blob/main/default_values_eu_parliamentary_election_2024.csv'
 df = pd.read_csv(file_path)
 
-# Identify districts, excluding non-percentage columns
 districts = [col for col in df.columns if col not in ['Parti', 'Kategori','Slider group','Party code','Political group']]
 email_address = "alberto@vthoresen.no"
 st.title("EU Parliament Election Simulator")
 st.markdown(f"Contact: [Alberto Valiente Thoresen](mailto:{email_address})")
 st.markdown("""
-Adjust your forecasts by using the menu on the left. Voter turnout by country can also be updated at the bottom of this menu.
+Adjust your forecasts by using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of this menu.
 
-The starting point for the simulation is the forecast "vote share by member state" for the EU Parliament Election 2024, presented [here](https://ecfr.eu/publication/a-sharp-right-turn-a-forecast-for-the-2024-european-parliament-elections/) , with rough population estimates for 2024.
-When not available, vote shares per constituency are estimated on the basis of the expected vote share for the respective member state that the constituency belongs to.
-Default voter turnout is based on voter participation by country in the EU Parliament Election 2019.
+The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/) , with rough population estimates for 2024.
+When not available, vote shares per constituency are estimated on the basis of the expected vote share for the respective member state that the constituency belongs to, as in the case of preliminary figures for Ireland and its constituencies.
+Default voter turnout is based on voter participation by country in the EU Parliament Election 2019. Final numbers for the 2024 were not available at the time this app was published.
 
-In the original forecast, the authors warn that "vote shares do not add up to 100 per cent because we do not show minor parties or votes for 'other' parties." 
-However, in this simulation, vote shares are normalized, so they do add to 100 % by constituency. This starting point might overestimate the number of seats for certain parliamentary groups.
-You also have to take in consideration that the poll, registered as default values, was published in January 2024. 
-But you can update these values by adjusting the sliders, with more accurate and recent forecasts.
+Both percentages by party, voter turnout and number of voters can be updated by adjusting the sliders, with more accurate and recent results.
 
 This program calculates seat allocation by applying the correct method used in each constituency for the number of seats available, considering current political group thresholds.
 These methods include [D'Hont Method](https://en.wikipedia.org/wiki/D%27Hondt_method), [Sainte-Laguë Method (including the modified version)](https://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method) and [Largest Remainder Method](https://en.wikipedia.org/wiki/Largest_remainders_method).
 An overview of the methods used by constituency is presented [here](https://en.wikipedia.org/wiki/2024_European_Parliament_election).
-Results are merely indicative, given that the methods are applied to political groups, and not to political parties in each constituency.
-The actual results will therefore differ, also considering threshold effects. However, the discrepancy will not be too large, since parliamentary groups are often represented by one or few parties in each constituency.
 
 **Note**: For simplicity, this program uses Sainte-Laguë instead of the Single Transferable Vote (STV) method for Ireland and Malta. The Sainte-Laguë method still provides proportional representation at the political group level. For more information on the intricacies of the STV method, see [Single Transferable Vote - Disadvantages](https://aceproject.org/main/english/es/esf04b.htm). This summary provides a good overview of the challenges involved in forecasting this method solely based on political groups, and programming such forecasts.
 
@@ -307,34 +300,26 @@ kategori_mapping = {
 
 results_allocation = allocate_seats_by_constituencies(results_df, country_methods)
 
-# Ensure 'Political group' is merged correctly
 results_allocation = pd.merge(results_allocation, df[['Parti', 'Political group']].drop_duplicates(), on='Parti', how='left')
 
-# Remove duplicates based on both Party and Constituency
 results_allocation = results_allocation.drop_duplicates(subset=['Parti', 'Constituency'], keep='first')
 
-# Display the dataframe with Party, Constituency, and Seats before aggregation
-st.write("### Seat allocation by party and constituency before aggregation")
+st.write("### Seat allocation by party and constituency before projected aggregation by political group")
 st.dataframe(results_allocation[['Parti', 'Constituency', 'Seats']])
 
-# Consolidate 'Other parties' into 'Others'
 results_allocation['Political group'] = results_allocation['Political group'].replace('Other parties', 'Others')
 
-# Check seat allocation by constituency
 seats_by_constituency = results_allocation.groupby('Constituency')['Seats'].sum().reset_index()
-st.write("### Total seats by constituency")
+st.write("### Total seats allocated by constituency")
 st.dataframe(seats_by_constituency)
 
-# Aggregate seats by Political Group
 aggregated_results = results_allocation.groupby(['Political group']).agg({'Seats': 'sum'}).reset_index()
 
-# Assign 'Kategori' based on 'Political group'
 aggregated_results['Kategori'] = aggregated_results['Political group'].map(kategori_mapping)
 
-st.write("### Seat distribution by political group")
+st.write("###Projected Seat distribution by political group")
 st.dataframe(aggregated_results)
 
-# Debugging: Check total seats allocated
 total_seats_allocated = aggregated_results['Seats'].sum()
 st.write(f"Total seats allocated: {total_seats_allocated}")
 
