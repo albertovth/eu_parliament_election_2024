@@ -151,7 +151,7 @@ df = pd.read_csv(file_path)
 
 districts = [col for col in df.columns if col not in ['Parti', 'Kategori','Slider group','Party code','Political group']]
 email_address = "alberto@vthoresen.no"
-st.title("EU Parliament Election Simulator")
+st.title("EU Parliament Election 2024")
 st.markdown(f"Contact: [Alberto Valiente Thoresen](mailto:{email_address})")
 st.markdown("""
 Adjust your forecasts using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of the menu on the left.
