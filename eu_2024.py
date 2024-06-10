@@ -160,7 +160,7 @@ The starting point for the simulation is the first preliminary forecast for the 
 
 Default voter turnout is based on voter participation by country in the EU Parliament Election 2019. Final numbers for 2024 were also not available at the time this app was published.
 
-Percentages by party, voter turnout, and number of voters can be updated by adjusting the sliders for more accurate and recent results.
+Voting percentages for each party, voter turnout, and number of voters can be updated by adjusting the sliders, for more accurate and recent results.
 
 This program calculates seat allocation by applying the appropriate method used in each constituency, considering the number of seats available and current legal party thresholds. These methods include the [D'Hont Method](https://en.wikipedia.org/wiki/D%27Hondt_method), [Sainte-Laguë Method (including the modified version)](https://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method), and [Largest Remainder Method](https://en.wikipedia.org/wiki/Largest_remainders_method). An overview of the methods used by constituency is presented [here](https://en.wikipedia.org/wiki/2024_European_Parliament_election).
 
