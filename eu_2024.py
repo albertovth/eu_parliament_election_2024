@@ -154,21 +154,19 @@ email_address = "alberto@vthoresen.no"
 st.title("EU Parliament Election Simulator")
 st.markdown(f"Contact: [Alberto Valiente Thoresen](mailto:{email_address})")
 st.markdown("""
-Adjust your forecasts by using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of this menu.
+Adjust your forecasts using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of the menu on the left.
 
-The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/) , with rough population estimates for 2024.
-When not available, vote shares per constituency are estimated on the basis of the expected vote share for the respective member state that the constituency belongs to, as in the case of preliminary figures for Ireland and its constituencies.
-Default voter turnout is based on voter participation by country in the EU Parliament Election 2019. Final numbers for the 2024 were not available at the time this app was published.
+The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/), with rough population estimates for 2024. When specific vote shares by party per constituency are not available, they are estimated based on the expected vote share by party for the respective member state. This approach is used for preliminary figures for Ireland and its constituencies, where reliable preliminary figures were unavailable at the time this app was published, due to the complexities inherent to the Irish electoral system.
 
-Both percentages by party, voter turnout and number of voters can be updated by adjusting the sliders, with more accurate and recent results.
+Default voter turnout is based on voter participation by country in the EU Parliament Election 2019. Final numbers for 2024 were also not available at the time this app was published.
 
-This program calculates seat allocation by applying the correct method used in each constituency for the number of seats available, considering current political group thresholds.
-These methods include [D'Hont Method](https://en.wikipedia.org/wiki/D%27Hondt_method), [Sainte-Laguë Method (including the modified version)](https://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method) and [Largest Remainder Method](https://en.wikipedia.org/wiki/Largest_remainders_method).
-An overview of the methods used by constituency is presented [here](https://en.wikipedia.org/wiki/2024_European_Parliament_election).
+Percentages by party, voter turnout, and number of voters can be updated by adjusting the sliders for more accurate and recent results.
 
-**Note**: For simplicity, this program uses Sainte-Laguë instead of the Single Transferable Vote (STV) method for Ireland and Malta. The Sainte-Laguë method still provides proportional representation at the political group level. For more information on the intricacies of the STV method, see [Single Transferable Vote - Disadvantages](https://aceproject.org/main/english/es/esf04b.htm). This summary provides a good overview of the challenges involved in forecasting this method solely based on political groups, and programming such forecasts.
+This program calculates seat allocation by applying the appropriate method used in each constituency, considering the number of seats available and current legal party thresholds. These methods include the [D'Hont Method](https://en.wikipedia.org/wiki/D%27Hondt_method), [Sainte-Laguë Method (including the modified version)](https://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method), and [Largest Remainder Method](https://en.wikipedia.org/wiki/Largest_remainders_method). An overview of the methods used by constituency is presented [here](https://en.wikipedia.org/wiki/2024_European_Parliament_election).
 
-A diagram showing the resulting distribution of seats in the forecast will be presented below. It may take some time to visualize.
+**Note**: For simplicity, this program uses the Sainte-Laguë method instead of the Single Transferable Vote (STV) method for Ireland and Malta, which actually use the STV method in practice. The Sainte-Laguë method still provides proportional representation at the political group level. For more information on the intricacies of the STV method, see [Single Transferable Vote - Disadvantages](https://aceproject.org/main/english/es/esf04b.htm). This summary provides a good overview of the challenges involved in forecasting this method, solely based on party preference and programming such forecasts.
+
+A diagram showing the resulting distribution of seats in the forecast is presented below. It may take some time to visualize due to the processing time for each calculation.
 """)
 
 percentage_dict = {}
