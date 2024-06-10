@@ -315,7 +315,7 @@ aggregated_results = results_allocation.groupby(['Political group']).agg({'Seats
 
 aggregated_results['Kategori'] = aggregated_results['Political group'].map(kategori_mapping)
 
-st.write("###Projected Seat distribution by political group")
+st.write("### Projected Seat distribution by political group")
 st.dataframe(aggregated_results)
 
 total_seats_allocated = aggregated_results['Seats'].sum()
