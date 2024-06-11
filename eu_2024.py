@@ -156,7 +156,9 @@ st.markdown(f"Contact: [Alberto Valiente Thoresen](mailto:{email_address})")
 st.markdown("""
 Adjust your forecasts using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of the menu on the left.
 
-The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/), with rough population estimates for 2024. When specific vote shares by party per constituency are not available, these are estimated on the basis on the expected vote share by party for the respective member state. This approach is used for preliminary figures for Ireland and its constituencies, where reliable preliminary figures were unavailable at the time this app was published, due to the complexities inherent to the Irish electoral system.
+The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/), with rough population estimates for 2024. Constituency results for Belgium were obtained from the same source.
+Constituency results for Italy and Poland were obtained from [Eligendo](https://elezioni.interno.gov.it/europee/scrutini/20240609/scrutiniEI), maintained by the Ministero dell'Interno Direzione Centrale per i Servizi Elettorali, and [European Parliament Election 2024](https://wybory.gov.pl/pe2024/en/wynik/pl), maintained by Państwowa Komisja Wyborcza, respectively.
+When specific vote shares by party per constituency are not available, these are estimated on the basis on the expected vote share by party for the respective member state. This approach is used for preliminary figures for Ireland and its constituencies, where reliable preliminary figures were unavailable at the time this app was published, due to the complexities inherent to the Irish electoral system.
 
 Default voter turnout is based on voter participation by country in the EU Parliament Election 2019. Final numbers for 2024 were also not available at the time this app was published.
 
@@ -246,7 +248,7 @@ results_df_english.columns = ['Party' if col == 'Parti' else
 if 'Kategori' in results_df_english.columns:
     results_df_english.drop('Kategori', axis=1, inplace=True)
 
-st.write("### Total votes by party and country")
+st.write("### Total votes by party and constituency")
 st.dataframe(results_df_english)
 
 country_methods = {
@@ -266,15 +268,31 @@ country_methods = {
     'Greece': [(largest_remainder, 21, 0.03, hare_quota)],
     'Hungary': [(d_hondt, 21, 0.05)],
     'Ireland_Dublin': [(sainte_lague, 4, 0)], ## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
-    'Ireland_Midland_North_West': [(sainte_lague, 4, 0)], ## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
+    'Ireland_Midland_North_West': [(sainte_lague, 4, 0)],## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
     'Ireland_South': [(sainte_lague, 6, 0)], ## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
-    'Italy': [(largest_remainder, 76, 0.04, hare_quota)],
+    'Italy_North_West': [(largest_remainder, 21, 0.04, hare_quota)],
+    'Italy_North_East': [(largest_remainder, 15, 0.04, hare_quota)],
+    'Italy_Central': [(largest_remainder, 14, 0.04, hare_quota)],
+    'Italy_Southern': [(largest_remainder, 18, 0.04, hare_quota)],
+    'Italy_Islands': [(largest_remainder, 8, 0.04, hare_quota)],
     'Latvia': [(sainte_lague, 9, 0.05)],
     'Lithuania': [(largest_remainder, 11, 0.05, hare_quota)],
     'Luxembourg': [(d_hondt, 6, 0)],
-    'Malta': [(sainte_lague, 6, 0)], ## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
+    'Malta': [(sainte_lague, 6, 0)],## Using Sainte-Laguë instead of Single Transferable Vote for simplicity
     'Netherlands': [(d_hondt, 31, 0.032)],
-    'Poland': [(d_hondt, 53, 0.05)],
+    'Poland_Greater_Poland': [(d_hondt, 4, 0.05)],
+    'Poland_Kuyavian_Pomeranian': [(d_hondt, 2, 0.05)],
+    'Poland_Lesser_Poland_Swietokrzyskie': [(d_hondt, 4, 0.05)],
+    'Poland_Lodz': [(d_hondt, 3, 0.05)],
+    'Poland_Lower_Silesian_Opole': [(d_hondt, 4, 0.05)],
+    'Poland_Lublin': [(d_hondt, 4, 0.05)],
+    'Poland_Lubusz_West_Pomeranian': [(d_hondt, 4, 0.05)],
+    'Poland_Masovian': [(d_hondt, 4, 0.05)],
+    'Poland_Podlaskie_Warmian_Masurian': [(d_hondt, 3, 0.05)],
+    'Poland_Pomeranian': [(d_hondt, 3, 0.05)],
+    'Poland_Silesian': [(d_hondt, 8, 0.05)],
+    'Poland_Subcarpathian': [(d_hondt, 3, 0.05)],
+    'Poland_Warsaw': [(d_hondt, 7, 0.05)],
     'Portugal': [(d_hondt, 21, 0)],
     'Romania': [(d_hondt, 33, 0.05)],
     'Slovakia': [(largest_remainder, 15, 0.05, hare_quota)],
@@ -283,7 +301,6 @@ country_methods = {
     'Sweden': [(modified_sainte_lague, 21, 0.04)],
 }
 
-# Define the kategori mapping directly
 kategori_mapping = {
     'EPP': 8,
     'S&D': 3,
