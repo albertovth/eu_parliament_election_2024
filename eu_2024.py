@@ -156,7 +156,7 @@ st.markdown(f"Contact: [Alberto Valiente Thoresen](mailto:{email_address})")
 st.markdown("""
 Adjust your forecasts using the menu on the left. Voter turnout and voters by EU parliamentary constituency can also be updated at the bottom of the menu on the left.
 
-The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/), with rough population estimates for 2024. Constituency results for Belgium were obtained from the same source.
+The starting point for the simulation is the first preliminary forecast for the EU Parliament Election 2024, presented [here](https://results.elections.europa.eu/en/), with rough population estimates for 2024, provided [here](https://ec.europa.eu/eurostat/cache/metadata/en/demo_popep_esms.htm). Constituency results for Belgium were obtained from the same source.
 Constituency results for Italy and Poland were obtained from [Eligendo](https://elezioni.interno.gov.it/europee/scrutini/20240609/scrutiniEI), maintained by the Ministero dell'Interno Direzione Centrale per i Servizi Elettorali, and [European Parliament Election 2024](https://wybory.gov.pl/pe2024/en/wynik/pl), maintained by Państwowa Komisja Wyborcza, respectively.
 When specific vote shares by party per constituency are not available, these are estimated on the basis on the expected vote share by party for the respective member state. This approach is used for preliminary figures for Ireland and its constituencies, where reliable preliminary figures were unavailable at the time this app was published, due to the complexities inherent to the Irish electoral system.
 
