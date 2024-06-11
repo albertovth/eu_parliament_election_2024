@@ -160,7 +160,7 @@ The starting point for the simulation is the first preliminary forecast for the 
 Constituency results for Italy and Poland were obtained from [Eligendo](https://elezioni.interno.gov.it/europee/scrutini/20240609/scrutiniEI), maintained by the Ministero dell'Interno Direzione Centrale per i Servizi Elettorali, and [European Parliament Election 2024](https://wybory.gov.pl/pe2024/en/wynik/pl), maintained by Państwowa Komisja Wyborcza, respectively.
 When specific vote shares by party per constituency are not available, these are estimated on the basis on the expected vote share by party for the respective member state. This approach is used for preliminary figures for Ireland and its constituencies, where reliable preliminary figures were unavailable at the time this app was published, due to the complexities inherent to the Irish electoral system.
 
-Default voter turnout is based on turnout results published [here](https://results.elections.europa.eu/)
+Default voter turnout is based on results published [here](https://results.elections.europa.eu/).
 
 Voting percentages for each party, voter turnout, and number of voters can be updated by adjusting the sliders, for more accurate and recent results.
 
